@@ -17,5 +17,12 @@ def parseText(f):
 	sub = str(sub)
 	if type(payload) != type('') :
 		payload = str(payload)
-	
-	print sub + payload
+	email_data=sub+payload
+
+	if len(email_data)>1:
+		email_data=email_data.translate(string.maketrans("",""),string.punctuation)
+		stemmer=SnowballStemmer("english")
+		stemmed_words=[stemmer.stem(i) for i in email_data.split()]
+		email_data=' '.join(stemmed_words)
+
+		print email_data

@@ -13,8 +13,7 @@ print email_list[0]
 email_data=[]
 from_data=[]
 
-
 # for i in email_list:
-print len(email_list)
-# email=open(email_list[0])
-# email_text=parseText(email)
+
+email=open(email_list[0])
+email_text=parseText(email)
