@@ -30,6 +30,8 @@ for x in fr:
 	email.close()
 print "Email processed"
 fr.close()
+pickle.dump(email_data,open("raw_email_data.pkl","w"))
+pickle.dump(label_data,open("spam_label.pkl","w"))
 
 # email=open(email_list[0])
 # email_text=parseText(email)
