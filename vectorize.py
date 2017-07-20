@@ -1,14 +1,15 @@
 import os
 import pickle
 import sys
-
+import re
+import codecs
+import string
 from parse_email import parseText
+# import sys
+# # sys.setdefaultencoding() does not exist, here!
+# reload(sys)  # Reload does the trick!
+# sys.setdefaultencoding('UTF8')
 
-# curr_path=os.getcwd()
-# path=""
-# email_path=os.chdir(path)
-# email_list=os.listdir(path)
-# print email_list[0]
 path=os.getcwd()
 path=path+"/CSDMC2010_SPAM/CSDMC2010_SPAM/TRAINING/"
 fr=open("SPAMTrain.label","r")
@@ -20,18 +21,14 @@ for x in fr:
 	col=x.split()
 	file_name=col[1]
 	file_location=os.path.join(path,file_name)
-	print "processing",file_name
-	email=open(file_location,"r")
-	email_text=parseText(email)
-	# print email_text
+	print ("processing",file_name)
+	f=open(file_location,"r")
+	email_text=parseText(f)
 	label_data.append(col[0])
 	email_data.append(email_text)
-	# print fr
-	email.close()
-print "Email processed"
+	f.close()
+print("Email processed")
 fr.close()
 pickle.dump(email_data,open("raw_email_data.pkl","w"))
 pickle.dump(label_data,open("spam_label.pkl","w"))
 
-# email=open(email_list[0])
-# email_text=parseText(email)
